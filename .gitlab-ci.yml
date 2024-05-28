@@ -14,16 +14,17 @@ build:
     paths:
       - build
   only:
-    - main
+    - main    
 
 publish:
   stage: deploy
   image:
     name: amazon/aws-cli
     entrypoint: [""]
-    script:
-      - echo "Building the app"
-      # - aws s3 cp ./build/ $AWS_S3_BUCKET_URL --recursive --include "*"
-      - aws s3 sync ./build $AWS_S3_BUCKET_URL --delete
+  script:
+    - echo "Deploy the app"
+    - echo $AWS_S3_BUCKET_URL
+    # - aws s3 cp ./build/ $AWS_S3_BUCKET_URL --recursive --include "*"
+    - aws s3 sync ./build/ s3://$AWS_S3_BUCKET_URL/ --delete
   only:
     - main
