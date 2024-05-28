@@ -21,8 +21,9 @@ publish:
   image:
     name: amazon/aws-cli
     entrypoint: [""]
-    script:
-      # - aws s3 cp ./build/ $AWS_S3_BUCKET_URL --recursive --include "*"
-      - aws s3 sync ./build $AWS_S3_BUCKET_URL --delete
+  script:
+    - echo "Building the app"
+    # - aws s3 cp ./build/ $AWS_S3_BUCKET_URL --recursive --include "*"
+    - aws s3 sync ./build $AWS_S3_BUCKET_URL --delete
   only:
     - main
